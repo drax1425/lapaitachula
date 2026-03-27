@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Imprimir QR - La Papita Chula</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Nunito:wght@400;700;800&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --gold: #F5C842;
+            --dark: #1a1a1a;
+            --text-dark: #1a1a1a;
+            --text-light: #ffffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Nunito', sans-serif;
+            background: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .poster {
+            width: 210mm;
+            /* A4 width */
+            height: 297mm;
+            /* A4 height */
+            background: var(--dark);
+            color: var(--text-light);
+            padding: 40mm 20mm;
+            text-align: center;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+            overflow: hidden;
+        }
+
+        /* Gold Border */
+        .poster::after {
+            content: '';
+            position: absolute;
+            top: 10mm;
+            left: 10mm;
+            right: 10mm;
+            bottom: 10mm;
+            border: 2px solid var(--gold);
+            pointer-events: none;
+        }
+
+        .logo-container {
+            margin-bottom: 20mm;
+        }
+
+        .logo {
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 5px solid var(--gold);
+            box-shadow: 0 0 30px rgba(245, 200, 66, 0.3);
+        }
+
+        h1 {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 64px;
+            color: var(--gold);
+            letter-spacing: 5px;
+            margin-top: 10mm;
+        }
+
+        .tagline {
+            font-size: 24px;
+            text-transform: uppercase;
+            letter-spacing: 8px;
+            color: #a09880;
+            margin-bottom: 20mm;
+        }
+
+        .qr-section {
+            background: white;
+            padding: 20px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            margin-bottom: 20mm;
+        }
+
+        .qr-code {
+            width: 300px;
+            display: block;
+        }
+
+        .instruction {
+            font-size: 28px;
+            font-weight: 800;
+            margin-bottom: 10mm;
+        }
+
+        .footer-note {
+            font-size: 16px;
+            color: #a09880;
+        }
+
+        /* Print Button */
+        .print-btn {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: var(--gold);
+            color: var(--dark);
+            border: none;
+            padding: 15px 30px;
+            border-radius: 50px;
+            font-weight: 800;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            z-index: 100;
+        }
+
+        @media print {
+            .print-btn {
+                display: none;
+            }
+
+            body {
+                padding: 0;
+                background: white;
+            }
+
+            .poster {
+                box-shadow: none;
+                width: 100%;
+                height: 100%;
+                border: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <button class="print-btn" onclick="window.print()">🖨️ IMPRIMIR AHORA</button>
+
+    <div class="poster">
+        <div class="logo-container">
+            <img src="logo.png"
+                class="logo" alt="Logo La Papita Chula">
+            <h1>LA PAPITA CHULA</h1>
+            <p class="tagline">Sandwiches y Papas</p>
+        </div>
+
+        <div class="instruction">
+            📦 ESCANEA Y MIRA NUESTRO MENÚ
+        </div>
+
+        <div class="qr-section">
+            <img src="qr_code.png" class="qr-code" alt="Código QR Menú">
+        </div>
+
+        <div>
+            <p class="instruction" style="color: var(--gold); margin-bottom: 5mm;">🌐 la-papitachula.vercel.app</p>
+            <p class="footer-note">¡Gracias por tu preferencia! ❤️</p>
+        </div>
+    </div>
+
+</body>
+
+</html>
